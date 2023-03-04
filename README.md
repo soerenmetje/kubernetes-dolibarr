@@ -21,8 +21,8 @@ kubectl create namespace dolibarr
 ```
 6. Apply configuration to Kubernetes cluster: 
 ``` bash
-kubectl apply -n dolibarr ./init
-kubectl apply -n dolibarr .
+kubectl apply -n dolibarr ./deploy-kubernetes/init
+kubectl apply -n dolibarr ./deploy-kubernetes
 ```
 7. Make a tee and wait until auto-install of Dolibarr container is finished (can take 5 to 10 min)
 8. Check if Dolibarr webserver is reachable
