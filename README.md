@@ -1,8 +1,8 @@
 # Dolibarr in Kubernetes
 Run Dolibarr in a Kubernetes cluster. 
 
-[tuxgasys' Dolibarr Docker images](https://hub.docker.com/r/tuxgasy/dolibarr) are used.
-Therefor Dolibarr will be installed automatically on first start.
+[Tuxgasys' Dolibarr Docker image](https://hub.docker.com/r/tuxgasy/dolibarr) is used.
+Therefore Dolibarr will be installed automatically on first start.
 
 ## Prerequisites
 - Kubernetes cluster is set up and ready
@@ -27,7 +27,12 @@ kubectl apply -n dolibarr ./deploy-kubernetes
 7. Make a tee and wait until auto-install of Dolibarr container is finished (can take 5 to 10 min)
 8. Check if Dolibarr webserver is reachable
 
-## Debugging
+## Known Issues
+- In case special characters are displayed as `?` in generated pdf files: 
+  The database should be the collation to `utf8_general_ci`.
+  For pdf go to _Home->Setup->Other Setup_ and add this parameter Name-> `MAIN_PDF_FORCE_FONT`  Value-> `dejavusans`
+
+## Troubleshooting
 In case of webserver is not reachable or errors, check status and logs: 
 ``` bash 
 kubectl get all -n dolibarr
