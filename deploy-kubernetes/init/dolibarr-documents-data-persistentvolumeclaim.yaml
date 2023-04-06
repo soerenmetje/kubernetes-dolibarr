@@ -3,10 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: webserver-custom
-  name: webserver-custom
+    io.kompose.service: dolibarr-documents-data
+  name: dolibarr-documents-data
 spec:
-  storageClassName: nfs-csi
   accessModes:
     - ReadWriteOnce
   resources:

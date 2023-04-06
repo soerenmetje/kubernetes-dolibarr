@@ -52,10 +52,10 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/mysql
-              name: data
+              name: db-data
       restartPolicy: Always
       volumes:
-        - name: data
+        - name: db-data
           persistentVolumeClaim:
-            claimName: data
+            claimName: db-data
 status: {}

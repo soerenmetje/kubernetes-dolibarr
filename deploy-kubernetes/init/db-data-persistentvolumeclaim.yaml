@@ -3,11 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: data
-  name: data
-
+    io.kompose.service: db-data
+  name: db-data
 spec:
-  storageClassName: nfs-csi
   accessModes:
     - ReadWriteOnce
   resources:

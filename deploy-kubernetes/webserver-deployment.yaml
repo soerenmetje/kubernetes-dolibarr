@@ -65,15 +65,15 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /var/www/documents
-              name: webserver-documents
+              name: dolibarr-documents-data
             - mountPath: /var/www/html/custom
-              name: webserver-custom
+              name: dolibarr-custom-data
       restartPolicy: Always
       volumes:
-        - name: webserver-documents
+        - name: dolibarr-documents-data
           persistentVolumeClaim:
-            claimName: webserver-documents
-        - name: webserver-custom
+            claimName: dolibarr-documents-data
+        - name: dolibarr-custom-data
           persistentVolumeClaim:
-            claimName: webserver-custom
+            claimName: dolibarr-custom-data
 status: {}
