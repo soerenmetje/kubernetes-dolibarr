@@ -23,6 +23,7 @@ spec:
       creationTimestamp: null
       labels:
         io.kompose.service: webserver
+        networking/allow-internet-access: "true"
     spec:
       containers:
         - env:
