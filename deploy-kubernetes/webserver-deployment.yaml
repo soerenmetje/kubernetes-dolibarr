@@ -58,7 +58,7 @@ spec:
                 configMapKeyRef:
                   key: TZ
                   name: env-configmap
-          image: tuxgasy/dolibarr:16.0.4
+          image: tuxgasy/dolibarr:16.0.5
           name: webserver
           ports:
             - containerPort: 80
