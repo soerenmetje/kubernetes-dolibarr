@@ -57,5 +57,9 @@ kubectl get all -n dolibarr
 kubectl logs -n dolibarr pod/<pod-name>
 ```
 
+## Bonus: Additional Resources
+
+- Dolibarr Variable substitution system: https://wiki.dolibarr.org/index.php/Variable_substitution_system
+
 ## Sources
 - https://github.com/tuxgasy/docker-dolibarr
