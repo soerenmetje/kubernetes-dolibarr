@@ -8,12 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        # TODO replace with your subdomain
-        - bills.mydomain.com
+        - bills.placeholderdomain.com
       secretName: dolibarr-ingress-tls
   rules:
-    # TODO replace with your subdomain
-    - host: bills.mydomain.com
+    - host: bills.placeholderdomain.com
       http:
         paths:
           - backend:

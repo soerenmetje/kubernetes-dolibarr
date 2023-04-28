@@ -10,8 +10,12 @@ Therefore, Dolibarr will be installed automatically on first start.
 - Kubernetes cluster has a `ClusterIssuer` named `lets-encrypt` set up and ready (may need to be adjusted for your cluster setup)
 
 ## Setup
-1. Clone this repository and `cd` into it
-2. Configure your subdomain in `ingress.yaml` (lines are marked by TODO)
+1. Clone this repository and `cd` into `deploy-kubernetes/`
+2. Replace placeholder domain in files with your subdomain:
+```bash
+DOMAIN_DOLI=bills.test.com
+sed -i "s/bills.placeholderdomain.com/${DOMAIN_DOLI}/g" ingress.yaml webserver-deployment.yaml
+```
 3. May adjust `ClusterIssuer` in `ingress.yaml`
 4. Configure passwords in `env-mysql-secret.yaml` and `env-dolibarr-secret.yaml` (lines are marked by TODO)
 5. May adjust `PersistentVolumeClaim` in `init/*-persistentvolumeclaim.yaml`. Currently, the default storage class of the cluster is used.
