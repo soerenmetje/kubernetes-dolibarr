@@ -31,6 +31,19 @@ kubectl apply -n dolibarr -f .
 8. Make a tee and wait until auto-install of Dolibarr container is finished (can take 5 to 10 min)
 9. Check if Dolibarr webserver is reachable
 
+## Advanced Configuration
+For further configuration of Dolibarr check out the environment variables in
+[tuxgasy/docker-dolibarr Readme](https://github.com/tuxgasy/docker-dolibarr#environment-variables-summary).
+
+## Upgrading Dolibarr Version
+1. Backup your volumes - for safety reasons.
+2. Remove the `install.lock` file in `/var/www/documents` volume.
+3. Ensure that env `DOLI_INSTALL_AUTO` is set to `1` (unset is also fine due to default value is 1). This ensures the migration of the database to the new version.
+4. Edit Dolibarr deployment in Kubernetes to use the next newer Dolibarr version.
+5. Check Dolibarr webinterface. After Kubernetes completed applying the new configuration, the new version of Dolibarr should be available.
+
+You can still use the standard way to upgrade through web interface.
+
 ## Known Issues
 - In case special characters are displayed as `?` in generated pdf files: 
   The database should be the collation to `utf8_general_ci`.
@@ -43,3 +56,6 @@ kubectl get all -n dolibarr
 
 kubectl logs -n dolibarr pod/<pod-name>
 ```
+
+## Sources
+- https://github.com/tuxgasy/docker-dolibarr
