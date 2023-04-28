@@ -32,9 +32,9 @@ spec:
           env:
             - name: MYSQL_DATABASE
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: MYSQL_DATABASE
-                  name: secret-mysql
+                  name: env-configmap
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -44,7 +44,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: TZ
-                  name: env-tz
+                  name: env-configmap
           image: mariadb:10.11
           name: db
           ports:

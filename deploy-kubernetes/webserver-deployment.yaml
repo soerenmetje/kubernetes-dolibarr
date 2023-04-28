@@ -41,9 +41,9 @@ spec:
               value: db
             - name: DOLI_DB_NAME
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   key: MYSQL_DATABASE
-                  name: secret-mysql
+                  name: env-configmap
             - name: DOLI_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -57,7 +57,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: TZ
-                  name: env-tz
+                  name: env-configmap
           image: tuxgasy/dolibarr:16.0.4
           name: webserver
           ports:
