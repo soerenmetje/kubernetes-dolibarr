@@ -31,7 +31,10 @@ kubectl apply -n dolibarr -f .
 8. Make a tee and wait until auto-install of Dolibarr container is finished (can take 5 to 10 min)
 9. Check if Dolibarr webserver is reachable
 
-## Advanced Configuration
+### Further Configuration: Whitelist IPs
+Especially in production setups security is important. Instead of (or additionally to) Basic Auth, you may want to restrict access by whitelisting certain IPs or IP ranges. This can be configured in the `ingress.yaml` by adding `nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/16"` to annotations. [This StackOverflow post](https://stackoverflow.com/a/59052066/14355362) provides further details. 
+
+## Advanced Dolibarr Configuration
 For further configuration of Dolibarr check out the environment variables in
 [tuxgasy/docker-dolibarr Readme](https://github.com/tuxgasy/docker-dolibarr#environment-variables-summary).
 
@@ -51,7 +54,7 @@ You can still use the standard way to upgrade through web interface.
 
 ## Troubleshooting
 In case of webserver is not reachable or errors, check status and logs: 
-``` bash 
+``` bash
 kubectl get all -n dolibarr
 
 kubectl logs -n dolibarr pod/<pod-name>
