@@ -17,22 +17,24 @@ DOMAIN_DOLI=bills.test.com
 sed -i "s/bills.placeholderdomain.com/${DOMAIN_DOLI}/g" ingress.yaml webserver-deployment.yaml
 ```
 3. May adjust `ClusterIssuer` in `ingress.yaml`
-4. Configure passwords in `env-mysql-secret.yaml` and `env-dolibarr-secret.yaml` (lines are marked by TODO)
-5. May adjust `PersistentVolumeClaim` in `init/*-persistentvolumeclaim.yaml`. Currently, the default storage class of the cluster is used.
-6. Create Kubernetes namespace for dolibarr:
+4. If you want to restrict access to certain IPs, check out the section [Further Configuration: Whitelist IPs](#further-configuration-whitelist-ips)
+5. Configure passwords in `env-mysql-secret.yaml` and `env-dolibarr-secret.yaml` (lines are marked by TODO)
+6. May adjust `PersistentVolumeClaim` in `init/*-persistentvolumeclaim.yaml`. Currently, the default storage class of the cluster is used.
+7. Create Kubernetes namespace for dolibarr:
 ``` bash
 kubectl create namespace dolibarr
 ```
-7. Apply configuration to Kubernetes cluster: 
+8. Apply configuration to Kubernetes cluster: 
 ``` bash
 kubectl apply -n dolibarr -f ./init
 kubectl apply -n dolibarr -f .
 ```
-8. Make a tee and wait until auto-install of Dolibarr container is finished (can take 5 to 10 min)
-9. Check if Dolibarr webserver is reachable
+9. Make a tee and wait until auto-install of Dolibarr container is finished (can take 5 to 10 min)
+10. Check if Dolibarr webserver is reachable
+
 
 ### Further Configuration: Whitelist IPs
-Especially in production setups security is important. Instead of (or additionally to) Basic Auth, you may want to restrict access by whitelisting certain IPs or IP ranges. This can be configured in the `ingress.yaml` by adding `nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/16"` to annotations. [This StackOverflow post](https://stackoverflow.com/a/59052066/14355362) provides further details. 
+Especially in production setups security is important. You may want to restrict access by whitelisting certain IPs or IP ranges. This can be configured in the `ingress.yaml` by adding `kubernetes.io/ingress.class: nginx` and `nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/24,172.10.0.1"` to annotations. [This StackOverflow post](https://stackoverflow.com/a/59052066/14355362) provides further details. 
 
 ## Advanced Dolibarr Configuration
 For further configuration of Dolibarr check out the environment variables in
